@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>RemindMe.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\bing.png" />
+    <None Remove="Images\juejin.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="RemindMe.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\bing.png" />
+    <Resource Include="Images\juejin.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controls\" />
+  </ItemGroup>
+
+</Project>

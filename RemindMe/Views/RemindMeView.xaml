@@ -1,0 +1,77 @@
+﻿<Window x:Class="RemindMe.RemindMeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RemindMe"
+        mc:Ignorable="d"
+        Title="签到提醒" Height="500" Width="850">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <Button Content="添加" Command="{Binding AddCommand}"></Button>
+            <Button Content="删除" Background="IndianRed" Command="{Binding DelCommand}"></Button>
+            <Button Content="一键签到" Command="{Binding SignInAllCommand}"></Button>
+        </StackPanel>
+        <ListView Grid.Row="1" ItemsSource="{Binding SignInItems}" SelectedItem="{Binding SelectedSignInItem}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="#50E3C2" BorderThickness="1,1,1,1" CornerRadius="1,1,1,1" Margin="10">
+                        <Grid Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0"  Width="40" Height="40" Source="{Binding Image}"></Image>
+                                <Button Grid.Column="2" Content="{Binding Status}" Command="{Binding DataContext.SignInCommand,RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding Path=.}"></Button>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    <Label Content="名称"></Label>
+                                    <TextBox Text="{Binding Name}"></TextBox>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <StackPanel>
+                                    <StackPanel.Resources>
+                                        <Style TargetType="Label">
+                                            <Setter Property="Width" Value="60"></Setter>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <Expander Background="LightCyan" Margin="0">
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="描述"></Label>
+                                                <TextBox Text="{Binding Desc}" TextWrapping="Wrap" Height="50" VerticalAlignment="Top" VerticalContentAlignment="Top"></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="定时签到"></Label>
+                                                <TextBox Text="{Binding Time}"></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="签到时间"></Label>
+                                                <TextBox Text="{Binding SignTime}"></TextBox>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Expander>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
